@@ -19,7 +19,7 @@ function maxSubarraySumDemo(arr, num) {
         }
     let maxSum = 0;
     let bigNum = 0;
-    for (let i = 0; i < arr.length - num; i++) {
+    for (let i = 0; i < arr.length - num+1; i++) {
         for (let j = i; j < i + num; j++) {
           console.log(arr[j],i + num);
           maxSum += arr[j]; 
@@ -42,7 +42,7 @@ console.log(maxSubarraySumDemo([1,2,5,2,8,1,5], 3)) //15
         if ( num > arr.length) {
             return null;
         }
-        var max = -Infinity;
+        var max = -Infinity; //working with negative value too
         for ( let i = 0; i < arr.length - num + 1; i++) {
             temp = 0;
             for (let j = 0; j < num; j++) {
@@ -56,3 +56,22 @@ console.log(maxSubarraySumDemo([1,2,5,2,8,1,5], 3)) //15
     }
 
     console.log(maxSubarraySumOff([1,2,5,2,8,1,5], 3)); //15
+
+
+    //Using windows slidding pattern
+    function maxSubarraySum(arr, num) {
+        let maxSum = 0;
+        let tempSum = 0;
+        if (arr.length < num) return null;
+        for ( let i = 0; i < num; i++ ) {
+            maxSum += arr[i];
+        }  
+        tempSum = maxSum;
+        for (let i = num; i < arr.length; i++) {
+            tempSum = tempSum - arr[i - num] + arr[i];
+            maxSum = Math.max(maxSum, tempSum);
+        }
+        return maxSum;
+    }
+
+    console.log(maxSubarraySum([1,2,5,2,8,1,5], 3)) //15
