@@ -74,3 +74,12 @@ anagramProblem:63 lookup second {r: 1, a: 1, t: 0}
 anagramProblem:63 lookup second {r: 1, a: 0, t: 0}
 anagramProblem:63 lookup second {r: 0, a: 0, t: 0}
 */
+
+
+// easiest approach if using javascript 
+function validAnagram(str1, str2) {
+  if (str1.length !== str2.length) {
+    return false;
+  }
+  return str1.split('').sort().join('') === str2.split('').sort().join('');
+}
